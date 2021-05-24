@@ -39,9 +39,7 @@ int main (){
 	int vectorNumContenedores[20];
 	
 	string auxiliarLetras;
-	
-	//llenar los contenedores dependiendo si hay coordenadas disponibles o no
-	
+	//matrices 
 	float peso [filas][columnas];//matriz
 	float precios[filas][columnas];//matriz
 	string marca [filas][columnas];//matriz
@@ -81,7 +79,7 @@ int main (){
 	string premium [numerocontenedores];
 	string economico[numerocontenedores];
 	
-	
+	// preguntar coordenadas
 	
 	for(int i=0;i<numerocontenedores;i++){
 	do{
@@ -94,7 +92,7 @@ int main (){
 			//celda disponible
 			//actualizar matriz de disponibilidad
 			disponibilidad[coordenadaFila][coordenadaColumna]=0;
-			//preguntar informacion del contenedor Marca, peso, puerto origen y tipo art�culo
+			//preguntar informacion del contenedor Marca, peso, puerto origen y tipo artículo
 			cout<<"ingrese peso del contenedor"<<endl;
 			cin>>peso[coordenadaFila][coordenadaColumna];
 			cout<<"ingrese la marca de la empresa"<<endl;
@@ -116,16 +114,17 @@ int main (){
 			}
 		}
 	else{ cout<<"coordenada invalida, repita el proceso"<<endl;
-	disponibilidad[coordenadaFila][coordenadaColumna]=1;
+	disponibilidad[coordenadaFila][coordenadaColumna]=1;//si no está disponible la coordenada, dejar disponible la celda, restar 1 a la i y repetir
 	i=i-1;
 	}
 	}
 	else{ cout<<"coordenada fuera de parametros"<<endl;
-	disponibilidad[coordenadaFila][coordenadaColumna]=1;
+	disponibilidad[coordenadaFila][coordenadaColumna]=1;//si está fuera de parámetros repetir proceso
 	}
-	}while(disponibilidad[coordenadaFila][coordenadaColumna]==1);//0 porque es mientras est� llenada la coordenada
+	}while(disponibilidad[coordenadaFila][coordenadaColumna]==1);//mientras esté disponible, hacer el proceso
 	
 	}
+		//porcentaje de ocupación del barco
 	for (int i=0;i<filas;i++){
 		for (int j=0;j<columnas;j++){
 			if (disponibilidad[i][j]==0){
@@ -137,12 +136,12 @@ int main (){
 	cout<<"el porcentaje actual del barco es: "<<valorBarco<<"%"<<endl;
 	
 	preciosacumulados=0.0;
-	
+	//acumulador de precios
 	for (int i=0;i<filas;i++){
 		for (int j=0;j<columnas;j++){
 			preciosacumulados=preciosacumulados+precios[i][j];
 		}
-	}
+	}//mostrar dinero recaudado
 		cout<<"el dinero recaudado en el puerto es: "<<preciosacumulados<<endl;
 		for (int i=0;i<filas;i++){
 		for (int j=0;j<columnas;j++){
